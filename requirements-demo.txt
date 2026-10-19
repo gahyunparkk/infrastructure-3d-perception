@@ -1,0 +1,2 @@
+# No third-party requirements for UDP dry-run and tests.
+# --carla additionally requires the CARLA Python API matching your simulator.

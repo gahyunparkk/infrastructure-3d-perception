@@ -1,9 +1,38 @@
-# Architecture
+# 시스템 아키텍처
 
-Perception stage: camera/video → KIT 2.5D ONNX detector → geometry and calibrated projection → tracking → structured states `{id, x, y, yaw}`.
+## 1. 객체 인식 및 추적
 
-Communication stage: UDP transmission → CARLA server → spawn/update/remove a vehicle actor keyed by ID.
+카메라 또는 저장된 영상에서 차량을 인식하고, 캘리브레이션을 적용해 차량의 위치와 방향을 추정합니다.
 
-In this repository, `src.communication` is a runnable **protocol integration demo** with synthetic states. `src.integration` retains historical integration scripts and does not include their external team dependencies.
+```text
+카메라 / 저장 영상
+  → KIT 2.5D ONNX 객체 인식 (외부 구성요소)
+  → 기하 계산 및 캘리브레이션 기반 좌표 변환
+  → 객체 추적
+  → 차량 상태 {id, x, y, yaw}
+```
 
-The wire format here mirrors the recorded whitespace-separated `id x y yaw` format. `yaw` in CARLA `Rotation(yaw=...)` expects degrees; coordinate-frame alignment and units must be verified against the sender before real-world use. This example does not supply real camera calibration or a valid CARLA map transform.
+## 2. 통신 및 CARLA 시각화
+
+```text
+차량 상태 → UDP 송신 → CARLA 연동 수신 프로그램
+  → 차량 ID별 액터 생성 / 위치 갱신 / 제거
+```
+
+이 저장소의 `src/communication/`은 **가상 차량 상태를 이용해 실행할 수 있는 UDP 프로토콜 데모**입니다. 팀의 기존 인식·통합 코드는 `src/team_pipeline/`에 보존되어 있으며, 외부 모델 및 실행 환경이 추가로 필요할 수 있습니다.
+
+## 3. 데이터 형식 및 좌표계 주의사항
+
+UDP 데이터는 당시 기록된 공백 구분 형식에 맞춥니다.
+
+```text
+id x y yaw
+```
+
+- `id`: 차량 식별 번호
+- `x`, `y`: 차량 위치 좌표
+- `yaw`: 차량의 방향각
+
+CARLA의 `carla.Rotation(yaw=...)`는 **도(degree)** 단위를 사용합니다. 실제 카메라 좌표계와 CARLA 좌표계를 연결할 때는 축 방향, 원점, 길이 단위, 방향각 변환을 별도로 확인해야 합니다.
+
+**이 데모에는 실제 카메라 캘리브레이션 값이나 검증된 CARLA 맵 좌표 변환이 포함되어 있지 않습니다.**

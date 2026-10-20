@@ -1,10 +1,22 @@
-# Third-party materials and redistribution
+# 외부 연구 자료 및 재배포 안내
 
-- KIT research publication: https://arxiv.org/abs/2507.03564
-- KIT official source and checkpoints: https://gitlab.kit.edu/kit/aifb/ATKS/public/digit4taf/2.5d-object-detection
-- ONNX checkpoint `model_v2_half.onnx`: **not included**. Download from the upstream host according to its terms.
-- Original KIT inference modules: **not included**.
-- CARLA Python API / simulator: **not included**; install from CARLA's official distribution.
-- Team-developed SORT, calibration and BEV-map implementations: **included in `src/team_pipeline/`** as collaborative project code. The upstream KIT original implementation and checkpoint remain external.
+본 저장소는 2025년 캡스톤 팀 프로젝트의 통합 코드를 공개합니다. 외부 연구진의 모델·구현과 팀 프로젝트 코드를 구분합니다.
 
-Do not attach a blanket `MIT` / `Apache-2.0` label to code whose rights are unclear. The newly written portable communication demo may be published under a license chosen by the repository owner, after review.
+| 구성요소 | 공개 여부 및 안내 |
+|---|---|
+| [KIT 2.5D 객체 인식 논문](https://arxiv.org/abs/2507.03564) | 참고 연구 |
+| [KIT 공식 GitLab 코드 및 체크포인트](https://gitlab.kit.edu/kit/aifb/ATKS/public/digit4taf/2.5d-object-detection) | 원본 저장소에서 직접 확인 및 다운로드 |
+| `model_v2_half.onnx` | **이 저장소에 포함하지 않음** |
+| KIT 원본 추론 모듈 | **이 저장소에 포함하지 않음** |
+| CARLA 시뮬레이터 및 Python API | **이 저장소에 포함하지 않음**. 공식 배포 경로에서 별도로 설치 |
+| 팀 프로젝트 SORT·캘리브레이션·BEV 코드 | `src/team_pipeline/`에 팀 통합 코드로 포함 |
+
+## 저작권 및 사용 범위
+
+KIT 연구진이 개발한 원본 객체 검출 모델 및 추론 구현을 본 팀이 개발한 것처럼 표시하지 않습니다. 모델 가중치는 원본 저장소의 안내 및 적용되는 이용 조건에 따라 별도로 확보해야 합니다.
+
+공개적으로 접근 가능한 원본 저장소라고 해서 제3자의 자유로운 **수정·재배포 권한까지 자동으로 부여되는 것은 아닙니다.** 권리 관계를 확인하지 않은 코드 전체에 `MIT` 또는 `Apache-2.0` 같은 라이선스를 일괄 적용하지 않습니다.
+
+이 저장소에 새롭게 작성된 독립 UDP 통신 데모에 대해서는 저장소 관리자가 검토 후 별도의 라이선스를 선택할 수 있습니다.
+
+기술 구성과 실행 방법은 [메인 README](../README.md)를 참고하세요.

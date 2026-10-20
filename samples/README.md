@@ -1,1 +1,5 @@
-No original team videos/datasets are redistributed. Use the included synthetic UDP sender for a local integration smoke test.
+# 예제 데이터 안내
+
+원본 팀 프로젝트의 영상 및 데이터셋은 이 저장소에 재배포하지 않았습니다.
+
+별도의 영상이나 모델 없이 통신 과정을 확인하려면 저장소에 포함된 **가상 차량 상태 UDP 송신 데모**를 사용하세요. 실행 방법은 [메인 README](../README.md#1-udp-통신-데모)를 참고하세요.
